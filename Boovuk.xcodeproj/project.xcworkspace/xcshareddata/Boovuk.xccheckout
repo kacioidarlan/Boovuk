@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>3973B4B7-8761-4F47-9D82-D4E74ED5D8CA</string>
+	<string>CA647C2B-129E-412C-BD20-38FF7E5B3316</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Boovuk</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>A1B8454C-162A-48D7-9F7E-D929A8A56092</key>
-		<string>https://github.com/kacioidarlan/Apps-iOS.git</string>
+		<key>15CE87EB-FB04-41CD-A2BA-8E85FC0A6F17</key>
+		<string>https://github.com/kacioidarlan/Boovuk.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Boovuk/Boovuk.xcodeproj/project.xcworkspace</string>
+	<string>Boovuk.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>A1B8454C-162A-48D7-9F7E-D929A8A56092</key>
-		<string>../../..</string>
+		<key>15CE87EB-FB04-41CD-A2BA-8E85FC0A6F17</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/kacioidarlan/Apps-iOS.git</string>
+	<string>https://github.com/kacioidarlan/Boovuk.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>A1B8454C-162A-48D7-9F7E-D929A8A56092</string>
+	<string>15CE87EB-FB04-41CD-A2BA-8E85FC0A6F17</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>A1B8454C-162A-48D7-9F7E-D929A8A56092</string>
+			<string>15CE87EB-FB04-41CD-A2BA-8E85FC0A6F17</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Apps</string>
+			<string>Boovuk</string>
 		</dict>
 	</array>
 </dict>

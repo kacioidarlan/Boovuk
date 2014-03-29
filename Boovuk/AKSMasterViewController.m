@@ -128,18 +128,20 @@
         [[segue destinationViewController] setDetailItem:object];
     }
     else if ([[segue identifier] isEqualToString:@"segueDigitalizarISBN"]) {
-   //     AKSViewControllerDigitalizarISBN *segueViewController = [segue destinationViewController];
+        //AKSViewControllerDigitalizarISBN *segueViewController = (AKSViewControllerDigitalizarISBN*)[segue destinationViewController];
         [segue destinationViewController];
+        
     }
     else if ([[segue identifier] isEqualToString:@"segueDigitarISBN"]) {
-   //     AKSViewControllerDigitalizarISBN *segueViewController = [segue destinationViewController];
+        //AKSViewControllerDigitalizarISBN *segueViewController = [segue destinationViewController];
           [segue destinationViewController];
     }
     else if ([[segue identifier] isEqualToString:@"segueFormulario"]) {
-        AKSViewControllerFormulario *segueViewController = (AKSViewControllerFormulario *)[segue destinationViewController];
-        segueViewController.managedObjectContext = self.managedObjectContext;
+        AKSViewControllerFormulario *detailViewController = (AKSViewControllerFormulario *)[segue destinationViewController];
+        detailViewController.managedObjectContext = self.managedObjectContext;
     }
 }
+
 
 #pragma mark - Fetched results controller
 
@@ -252,39 +254,13 @@
                             @"Digitar ISBN",
                             @"Cadastro Manual",
                             nil];
-    popup.tag = 1;
+
     popup.delegate = self;
     [popup showInView:self.view];    
 }
 
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        switch (buttonIndex) {
-            case 0: {
-                [self performSegueWithIdentifier:@"segueDigitalizarISBN" sender:NULL];
-                AKSViewControllerDigitalizarISBN *digitalizarISBN = [AKSViewControllerDigitalizarISBN new];
-                
-                [[self.splitViewController.viewControllers lastObject] setViewControllers:@[digitalizarISBN] animated:TRUE];
-                
-                break;
-            }
-            case 1: {
-                [self performSegueWithIdentifier:@"segueDigitarISBN" sender:NULL];
-                break;
-            }
-            case 2: {
-                AKSViewControllerFormulario *formulario = [AKSViewControllerFormulario new];
-                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:formulario];
-                [[self.splitViewController.viewControllers lastObject] setViewControllers:@[nav] animated:TRUE];
-                break;
-            }
-                
-            default:
-                break;
-        }
-    }
-    else {
         switch (buttonIndex) {
             case 0: {
                 [self performSegueWithIdentifier:@"segueDigitalizarISBN" sender:NULL];
@@ -302,9 +278,6 @@
             default:
                 break;
         }
-        
-        
-    }
     
 }
 

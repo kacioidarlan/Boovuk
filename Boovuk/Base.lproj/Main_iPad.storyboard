@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -22,7 +22,6 @@
         <!--Detail View Controller - Detail-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
                 <viewController title="Detail" id="JEX-9P-axG" customClass="AKSDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
@@ -32,8 +31,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="21" y="376" width="663" height="18"/>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Detail view content goes here" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
+                                <rect key="frame" x="22" y="374" width="663" height="18"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" size="system"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -41,11 +40,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
-                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
@@ -54,6 +48,7 @@
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="448" y="248"/>
         </scene>
@@ -70,7 +65,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-687" y="-630"/>
+            <point key="canvasLocation" x="-1711" y="-622"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="smW-Zh-WAh">
@@ -108,12 +103,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
+                    <connections>
+                        <segue destination="gRu-7Q-AEh" kind="push" identifier="segueDigitalizarISBN" splitViewControllerTargetIndex="1" id="Zqw-Lx-d5N"/>
+                        <segue destination="qxL-iv-zt3" kind="push" identifier="segueDigitarISBN" splitViewControllerTargetIndex="1" id="dOi-YV-hdE"/>
+                        <segue destination="GAT-Jf-EuV" kind="push" identifier="segueFormulario" splitViewControllerTargetIndex="1" id="qu5-z2-V8n"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="859" y="-631"/>
+            <point key="canvasLocation" x="831" y="-630"/>
         </scene>
-        <!--View Controller DigitalizarISBN-->
+        <!--View Controller DigitalizarISBN - Digitalizar ISBN-->
         <scene sceneID="3TU-Iw-HxE">
             <objects>
                 <viewController id="gRu-7Q-AEh" customClass="AKSViewControllerDigitalizarISBN" sceneMemberID="viewController">
@@ -122,15 +122,16 @@
                         <viewControllerLayoutGuide type="bottom" id="FCD-qJ-E14"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Cee-eN-6Mi">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8yD-fj-vao"/>
+                    <navigationItem key="navigationItem" title="Digitalizar ISBN" id="8yD-fj-vao"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfn-uC-NeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="-977"/>
+            <point key="canvasLocation" x="1474" y="-1499"/>
         </scene>
         <!--View Controller DigitarISBN - Digitar ISBN-->
         <scene sceneID="RgZ-Gn-doK">
@@ -141,11 +142,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Bj1-g4-Bre"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TFK-hA-ecV">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YfK-mi-fFR">
-                                <rect key="frame" x="20" y="115" width="728" height="30"/>
+                                <rect key="frame" x="20" y="113" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -159,12 +160,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Digitar ISBN" id="ktW-ZO-3Jn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyO-00-f7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="255"/>
+            <point key="canvasLocation" x="1474" y="-630"/>
         </scene>
         <!--View Controller Formulario - Fomulário-->
         <scene sceneID="V1L-jg-Ygf">
@@ -175,47 +177,58 @@
                         <viewControllerLayoutGuide type="bottom" id="kh6-Uv-GOs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NIg-eH-4k2">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Título" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPP-5t-sT5">
-                                <rect key="frame" x="20" y="123" width="728" height="30"/>
+                                <rect key="frame" x="20" y="123" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Autor" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Snz-yi-FgX">
-                                <rect key="frame" x="20" y="182" width="728" height="30"/>
+                                <rect key="frame" x="20" y="181" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Número de páginas" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HeA-rL-fAx">
-                                <rect key="frame" x="20" y="241" width="728" height="30"/>
+                                <rect key="frame" x="20" y="242" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dag-dy-hAn">
-                                <rect key="frame" x="20" y="304" width="728" height="30"/>
+                                <rect key="frame" x="20" y="304" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="vsX-Lw-0p8"/>
+                        <barButtonItem id="vsX-Lw-0p8"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Fomulário" id="iAD-IG-YGR">
-                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="URZ-5q-6fr"/>
+                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="URZ-5q-6fr">
+                            <connections>
+                                <action selector="buttonSalvar:" destination="GAT-Jf-EuV" id="0Tv-xV-gO2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="textFieldAutor" destination="Snz-yi-FgX" id="Lty-E6-3dR"/>
+                        <outlet property="textFieldISBN" destination="dag-dy-hAn" id="jaf-ig-k0W"/>
+                        <outlet property="textFieldNumeroPaginas" destination="HeA-rL-fAx" id="MBV-OQ-ooV"/>
+                        <outlet property="textFieldtitulo" destination="aPP-5t-sT5" id="jC3-Io-UY9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3I-NT-uJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="1485"/>
+            <point key="canvasLocation" x="1474" y="248"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -230,7 +243,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-366" y="248"/>
+            <point key="canvasLocation" x="-486" y="-96"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
