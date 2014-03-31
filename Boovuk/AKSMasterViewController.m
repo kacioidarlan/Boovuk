@@ -35,7 +35,7 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(buttonAdicionar:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (AKSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController = (AKSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];    
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,6 +44,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
 - (void)insertNewObject:(id)sender
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
@@ -63,6 +64,7 @@
         abort();
     }
 }
+*/
 
 #pragma mark - Table View
 
@@ -246,6 +248,7 @@
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[object valueForKey:@"titulo"] description];
+    cell.detailTextLabel.text = [[object valueForKey:@"autores"] description];
 }
 
 - (IBAction)buttonAdicionar:(id)sender {

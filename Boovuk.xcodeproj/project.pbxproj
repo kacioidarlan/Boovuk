@@ -11,6 +11,7 @@
 		E62D693318E4E73E00575FC5 /* AKSViewControllerDigitarISBN.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D693218E4E73E00575FC5 /* AKSViewControllerDigitarISBN.m */; };
 		E62D693618E4E75C00575FC5 /* AKSViewControllerFormulario.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D693518E4E75C00575FC5 /* AKSViewControllerFormulario.m */; };
 		E62D693C18E4F5DA00575FC5 /* Livro.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D693B18E4F5DA00575FC5 /* Livro.m */; };
+		E6508F3E18E8C6AB0009ED53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E6508F3D18E8C6AB0009ED53 /* MBProgressHUD.m */; };
 		E652BB7C18E3B69100ADEB74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E652BB7B18E3B69100ADEB74 /* Foundation.framework */; };
 		E652BB7E18E3B69100ADEB74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E652BB7D18E3B69100ADEB74 /* CoreGraphics.framework */; };
 		E652BB8018E3B69100ADEB74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E652BB7F18E3B69100ADEB74 /* UIKit.framework */; };
@@ -49,8 +50,10 @@
 		E62D693218E4E73E00575FC5 /* AKSViewControllerDigitarISBN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSViewControllerDigitarISBN.m; sourceTree = "<group>"; };
 		E62D693418E4E75C00575FC5 /* AKSViewControllerFormulario.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSViewControllerFormulario.h; sourceTree = "<group>"; };
 		E62D693518E4E75C00575FC5 /* AKSViewControllerFormulario.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSViewControllerFormulario.m; sourceTree = "<group>"; };
-		E62D693A18E4F5DA00575FC5 /* Livro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Livro.h; sourceTree = "<group>"; };
-		E62D693B18E4F5DA00575FC5 /* Livro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Livro.m; sourceTree = "<group>"; };
+		E62D693A18E4F5DA00575FC5 /* Livro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Livro.h; path = ../Livro.h; sourceTree = "<group>"; };
+		E62D693B18E4F5DA00575FC5 /* Livro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Livro.m; path = ../Livro.m; sourceTree = "<group>"; };
+		E6508F3C18E8C6AB0009ED53 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		E6508F3D18E8C6AB0009ED53 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		E652BB7818E3B69100ADEB74 /* Boovuk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Boovuk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E652BB7B18E3B69100ADEB74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E652BB7D18E3B69100ADEB74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -103,11 +106,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E6508F3F18E8C6B30009ED53 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				E6508F3C18E8C6AB0009ED53 /* MBProgressHUD.h */,
+				E6508F3D18E8C6AB0009ED53 /* MBProgressHUD.m */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		E652BB6F18E3B69100ADEB74 = {
 			isa = PBXGroup;
 			children = (
-				E62D693A18E4F5DA00575FC5 /* Livro.h */,
-				E62D693B18E4F5DA00575FC5 /* Livro.m */,
+				E6508F3F18E8C6B30009ED53 /* lib */,
 				E652BB8318E3B69100ADEB74 /* Boovuk */,
 				E652BBAC18E3B69200ADEB74 /* BoovukTests */,
 				E652BB7A18E3B69100ADEB74 /* Frameworks */,
@@ -139,6 +150,8 @@
 		E652BB8318E3B69100ADEB74 /* Boovuk */ = {
 			isa = PBXGroup;
 			children = (
+				E62D693A18E4F5DA00575FC5 /* Livro.h */,
+				E62D693B18E4F5DA00575FC5 /* Livro.m */,
 				E652BB8C18E3B69100ADEB74 /* AKSAppDelegate.h */,
 				E652BB8D18E3B69100ADEB74 /* AKSAppDelegate.m */,
 				E652BB8F18E3B69100ADEB74 /* Main_iPhone.storyboard */,
@@ -295,6 +308,7 @@
 				E652BB9A18E3B69100ADEB74 /* AKSMasterViewController.m in Sources */,
 				E652BB8A18E3B69100ADEB74 /* main.m in Sources */,
 				E62D693C18E4F5DA00575FC5 /* Livro.m in Sources */,
+				E6508F3E18E8C6AB0009ED53 /* MBProgressHUD.m in Sources */,
 				E62D693018E4E72B00575FC5 /* AKSViewControllerDigitalizarISBN.m in Sources */,
 				E62D693618E4E75C00575FC5 /* AKSViewControllerFormulario.m in Sources */,
 			);

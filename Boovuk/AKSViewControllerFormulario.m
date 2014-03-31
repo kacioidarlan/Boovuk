@@ -7,7 +7,9 @@
 //
 
 #import "AKSViewControllerFormulario.h"
+#import "AKSDetailViewController.h"
 #import "Livro.h"
+#import "MBProgressHUD.h"
 
 @interface AKSViewControllerFormulario ()
 @property (strong, nonatomic) IBOutlet UITextField *textFieldtitulo;
@@ -28,6 +30,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -59,10 +62,46 @@
     livro.dataCadastro = [NSDate date];
     livro.isbn13 = self.textFieldISBN.text;
     
+    NSString *mensagem = @"";
+    
     //salva o contexto no banco e loga erro caso ocorra
     NSError *error = NULL;
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"ERROR: %@, %@", error, [error userInfo]);
+        
+        mensagem = @"Ocorreu um erro ao inserir o Livro.";
     }
+    else{
+        mensagem = @"Livro incluído com sucesso";
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            AKSDetailViewController *detailViewController = [self.navigationController.viewControllers firstObject];
+            detailViewController.detailItem = livro;
+            [self.navigationController popToViewController:(UIViewController *)detailViewController animated:YES];
+        }
+        else {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+    
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    // Configure for text only and offset down
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = mensagem;
+    hud.margin = 10.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    
+    [hud hide:YES afterDelay:3];
+}
+
+//Método responsável por esconder o teclado ao tocar em algum local da tela
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self becomeFirstResponder];
+}
+
+-(BOOL)canBecomeFirstResponder{
+    return YES;
 }
 @end

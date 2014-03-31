@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Livro.h"
 
 @class AKSDetailViewController;
 
@@ -18,6 +19,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 - (IBAction)buttonAdicionar:(id)sender;
 
 @end
