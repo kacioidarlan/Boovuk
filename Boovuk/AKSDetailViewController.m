@@ -7,9 +7,17 @@
 //
 
 #import "AKSDetailViewController.h"
+#import "Livro.h"
 
 @interface AKSDetailViewController ()
 
+@property (strong, nonatomic) IBOutlet UILabel *labelTitulo;
+@property (strong, nonatomic) IBOutlet UILabel *labelAutores;
+@property (strong, nonatomic) IBOutlet UILabel *labelEditora;
+@property (strong, nonatomic) IBOutlet UILabel *labelISBN;
+@property (strong, nonatomic) IBOutlet UILabel *labelNrPag;
+@property (strong, nonatomic) IBOutlet UITextView *textViewDescricao;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewCapa;
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
@@ -33,14 +41,19 @@
     }        
 }
 
-- (IBAction)buttonSalvar:(id)sender {
-}
-
 - (void)configureView
 {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"titulo"] description];
+        //self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"titulo"] description];
+        Livro *livro = self.detailItem;
+        self.labelTitulo.text = livro.titulo;
+        self.labelAutores.text = livro.autores;
+        self.labelEditora.text = livro.editora;
+        self.labelNrPag.text = [livro.numeroPaginas stringValue];
+        self.labelISBN.text = livro.isbn13;
+        self.textViewDescricao.text = livro.descricao;
+        self.imageViewCapa.image = [UIImage imageWithData:livro.foto];        
     }
 }
 
