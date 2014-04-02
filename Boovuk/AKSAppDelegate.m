@@ -20,12 +20,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    [BookSearch searchByISBN:@"9780062024039" context:self.managedObjectContext sucess:^(Livro *book) {
-        NSLog(@"Ok :");
-    } fail:^(NSString *error) {
-        NSLog(@"Error : %@", error);
-    }];
+
+//    TODO : Remover depois
+//    Exemplo de todo utilizar o booksearch
+//    [BookSearch searchByISBN:@"9780062024039" context:self.managedObjectContext sucess:^(Livro *book) {
+//        NSLog(@"Ok :");
+//    } fail:^(NSString *error) {
+//        NSLog(@"Error : %@", error);
+//    }];
 
     
     // Override point for customization after application launch.
