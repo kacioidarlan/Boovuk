@@ -10,6 +10,8 @@
 
 #import "AKSMasterViewController.h"
 
+#import "BookSearch.h"
+
 @implementation AKSAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -18,6 +20,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [BookSearch searchByISBN:@"9780062024039" context:self.managedObjectContext sucess:^(Livro *book) {
+        NSLog(@"Ok :");
+    } fail:^(NSString *error) {
+        NSLog(@"Error : %@", error);
+    }];
+
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
