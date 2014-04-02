@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AKSViewControllerFormulario : UIViewController
+@interface AKSViewControllerFormulario : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property  (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end

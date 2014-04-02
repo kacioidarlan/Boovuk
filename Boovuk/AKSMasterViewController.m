@@ -14,6 +14,8 @@
 
 @interface AKSMasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property BOOL pesquisando;
 @end
 
 @implementation AKSMasterViewController
@@ -144,6 +146,27 @@
     }
 }
 
+-(void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"Pesquisar");
+}
+
+-(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    NSLog(@"Pesquisar acabou");
+}
+
+-(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Pesquisar Clique");
+    self.pesquisando = TRUE;
+    _fetchedResultsController = nil;
+    [self.tableView reloadData];
+}
+
+-(void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"Pesquisar Cancelar");
+    self.pesquisando = FALSE;
+    [self.tableView reloadData];
+}
 
 #pragma mark - Fetched results controller
 
@@ -284,5 +307,14 @@
     
 }
 
+#pragma mark - EsconderTeclado
+//Método responsável por esconder o teclado ao tocar em algum local da tela
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self becomeFirstResponder];
+}
+
+-(BOOL)canBecomeFirstResponder{
+    return YES;
+}
 
 @end

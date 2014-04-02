@@ -13,13 +13,11 @@
 
 #import <CoreData/CoreData.h>
 
-@interface AKSMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIActionSheetDelegate>
+@interface AKSMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate>
 
 @property (strong, nonatomic) AKSDetailViewController *detailViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
-- (IBAction)buttonAdicionar:(id)sender;
 
 @end
