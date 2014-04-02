@@ -10,13 +10,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Boovuk/AKSMasterViewController.m"
-            timestampString = "418091649.93052"
+            timestampString = "418095721.223616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "-searchBarSearchButtonClicked:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Boovuk/AKSViewControllerDigitarISBN.m"
+            timestampString = "418095707.405582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-buttonPesquisar:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AKSViewControllerDigitarISBN buttonPesquisar:]"
+                  moduleName = "Boovuk"
+                  urlString = "file:///Users/kacio/Documents/Projeto%20Final/Boovuk/Boovuk/AKSViewControllerDigitarISBN.m"
+                  timestampString = "418096336.049672"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "211">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[AKSViewControllerDigitarISBN buttonPesquisar:]_block_invoke"
+                  moduleName = "Boovuk"
+                  urlString = "file:///Users/kacio/Documents/Projeto%20Final/Boovuk/Boovuk/AKSViewControllerDigitarISBN.m"
+                  timestampString = "418096336.05001"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "61">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
