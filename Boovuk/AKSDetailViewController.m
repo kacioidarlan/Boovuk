@@ -7,6 +7,7 @@
 //
 
 #import "AKSDetailViewController.h"
+#import "AKSViewControllerFormulario.h"
 #import "Livro.h"
 
 @interface AKSDetailViewController ()
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelNrPag;
 @property (strong, nonatomic) IBOutlet UITextView *textViewDescricao;
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewCapa;
+- (IBAction)buttonEditar:(id)sender;
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
@@ -70,6 +72,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)buttonEditar:(id)sender {
+    [self performSegueWithIdentifier:@"segueFormulario" sender:self.detailItem];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"segueFormulario"]) {
+        AKSViewControllerFormulario *formularioViewController = (AKSViewControllerFormulario *)[segue destinationViewController];
+        formularioViewController.managedObjectContext = self.managedObjectContext;
+        formularioViewController.livroEditar = sender;
+    }
+}
+
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
@@ -85,5 +99,6 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
 
 @end

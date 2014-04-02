@@ -121,6 +121,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         self.detailViewController.detailItem = object;
+        self.detailViewController.managedObjectContext = self.managedObjectContext;
     }
 }
 

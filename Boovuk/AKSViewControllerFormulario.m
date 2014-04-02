@@ -21,6 +21,9 @@
 - (IBAction)buttonTirarFoto:(id)sender;
 - (IBAction)buttonPegarGaleria:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UITextField *textFieldISBN13;
+@property (strong, nonatomic) IBOutlet UITextView *textViewDescricao;
+
 @end
 
 @implementation AKSViewControllerFormulario
@@ -38,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +50,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) preencherLivroEdicao {
+    if (self.livroEditar != nil) {
+        self.textFieldtitulo.text = self.livroEditar.titulo;
+        self.textFieldAutor.text = self.livroEditar.autores;
+        self.textFieldNumeroPaginas.text = [self.livroEditar.numeroPaginas stringValue];
+        self.textFieldISBN.text = self.livroEditar.isbn10;
+        self.textFieldISBN13.text = self.livroEditar.isbn13;
+        self.textViewDescricao.text = self.livroEditar.descricao;
+        self.imageViewCapa.image = [UIImage imageWithData:self.livroEditar.foto];
+    }
+}
 /*
 #pragma mark - Navigation
 
@@ -59,12 +73,30 @@
 */
 
 - (IBAction)buttonSalvar:(id)sender {
-    Livro *livro = (Livro *)[NSEntityDescription insertNewObjectForEntityForName:@"Livro" inManagedObjectContext:self.managedObjectContext];;
+    Livro *livro;
+    
+    if (self.livroEditar != nil) {
+        //        self.livroEditar.titulo = self.textFieldtitulo.text;
+        //        self.livroEditar.autores = self.textFieldAutor.text;
+        //        self.livroEditar.dataCadastro = [NSDate date];
+        //        self.livroEditar.isbn13 = self.textFieldISBN.text;
+        //        self.livroEditar.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
+        //        self.livroEditar.isbn13 = self.textFieldISBN13.text;
+        //        self.livroEditar.descricao = self.textViewDescricao.text;
+        livro = self.livroEditar;
+
+    } else
+    {
+        livro = (Livro *)[NSEntityDescription insertNewObjectForEntityForName:@"Livro" inManagedObjectContext:self.managedObjectContext];
+    }
+    
     livro.titulo = self.textFieldtitulo.text;
     livro.autores = self.textFieldAutor.text;
     livro.dataCadastro = [NSDate date];
     livro.isbn13 = self.textFieldISBN.text;
     livro.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
+    livro.isbn13 = self.textFieldISBN13.text;
+    livro.descricao = self.textViewDescricao.text;
     
     NSString *mensagem = @"";
     
@@ -86,7 +118,7 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
-        
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
     // Configure for text only and offset down

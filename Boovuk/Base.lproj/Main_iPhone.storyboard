@@ -203,7 +203,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Livro" id="cra-N8-TIN"/>
+                    <navigationItem key="navigationItem" title="Livro" id="cra-N8-TIN">
+                        <barButtonItem key="rightBarButtonItem" title="Editar" id="y8D-22-6Z4">
+                            <connections>
+                                <action selector="buttonEditar:" destination="Ah7-4n-0Wa" id="MIW-Ku-2B8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageViewCapa" destination="5vv-HZ-9MT" id="vsx-K0-lp7"/>
                         <outlet property="labelAutores" destination="vYF-fb-N6B" id="gLm-8p-JR8"/>
@@ -212,11 +218,12 @@
                         <outlet property="labelNrPag" destination="aew-43-7A6" id="caI-7p-eZt"/>
                         <outlet property="labelTitulo" destination="Yfv-Av-G7F" id="cFP-ZV-Fxb"/>
                         <outlet property="textViewDescricao" destination="tut-Kr-HTc" id="no9-Ku-JsM"/>
+                        <segue destination="btk-wr-S5U" kind="push" identifier="segueFormulario" id="dgv-8o-vJw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029" y="64"/>
+            <point key="canvasLocation" x="1023" y="64"/>
         </scene>
         <!--View Controller Formulario - Formulário-->
         <scene sceneID="A3Y-7J-4aq">
@@ -248,8 +255,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OAS-AG-M8f">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN 10" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OAS-AG-M8f">
                                 <rect key="frame" x="20" y="386" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN 13" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWn-d6-REM">
+                                <rect key="frame" x="20" y="436" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -278,6 +291,13 @@
                                 <rect key="frame" x="20" y="70" width="100" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Descrição do Livro" translatesAutoresizingMaskIntoConstraints="NO" id="IiX-7C-seg">
+                                <rect key="frame" x="20" y="476" width="280" height="229"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -294,8 +314,10 @@
                         <outlet property="imageViewCapa" destination="Yxu-R4-XuF" id="hru-Sk-uCP"/>
                         <outlet property="textFieldAutor" destination="J75-g7-dC4" id="DnT-ny-BGs"/>
                         <outlet property="textFieldISBN" destination="OAS-AG-M8f" id="D3y-h2-rgo"/>
+                        <outlet property="textFieldISBN13" destination="QWn-d6-REM" id="HEq-dW-maZ"/>
                         <outlet property="textFieldNumeroPaginas" destination="2AS-d0-E0z" id="78h-DH-zKY"/>
                         <outlet property="textFieldtitulo" destination="npy-3g-V8w" id="ntw-vd-AEf"/>
+                        <outlet property="textViewDescricao" destination="IiX-7C-seg" id="Q2Z-Ag-uVy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXd-cG-6OD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,6 +391,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jhl-rA-INr"/>
+        <segue reference="dgv-8o-vJw"/>
     </inferredMetricsTieBreakers>
 </document>
