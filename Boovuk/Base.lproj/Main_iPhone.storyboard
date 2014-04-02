@@ -326,15 +326,22 @@
                                 <state key="normal" title="Pesquisar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPesquisar:" destination="Jon-yQ-lmw" eventType="touchUpInside" id="ecB-Gp-6Ez"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Digitar ISBN" id="Qqh-zO-wa2"/>
+                    <connections>
+                        <outlet property="textViewISBN" destination="U7L-Kz-zk6" id="v1k-7r-6WW"/>
+                        <segue destination="btk-wr-S5U" kind="push" identifier="segueFormulario" id="Jhl-rA-INr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdu-dC-tix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="909" y="-924"/>
+            <point key="canvasLocation" x="894" y="-924"/>
         </scene>
         <!--View Controller DigitalizarISBN - Digitalizar ISBN-->
         <scene sceneID="nTZ-uQ-cco">
@@ -361,4 +368,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Jhl-rA-INr"/>
+    </inferredMetricsTieBreakers>
 </document>

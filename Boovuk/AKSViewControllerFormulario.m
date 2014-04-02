@@ -86,8 +86,7 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
-    
-    
+        
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
     // Configure for text only and offset down

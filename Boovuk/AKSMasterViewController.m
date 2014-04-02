@@ -132,17 +132,18 @@
         [[segue destinationViewController] setDetailItem:object];
     }
     else if ([[segue identifier] isEqualToString:@"segueDigitalizarISBN"]) {
-        //AKSViewControllerDigitalizarISBN *segueViewController = (AKSViewControllerDigitalizarISBN*)[segue destinationViewController];
+        AKSViewControllerDigitalizarISBN *digitalizarViewController = (AKSViewControllerDigitalizarISBN *)[segue destinationViewController];
+        digitalizarViewController.managedObjectContext = self.managedObjectContext;
         [segue destinationViewController];
-        
     }
     else if ([[segue identifier] isEqualToString:@"segueDigitarISBN"]) {
-        //AKSViewControllerDigitalizarISBN *segueViewController = [segue destinationViewController];
+        AKSViewControllerDigitarISBN *digitarViewController = (AKSViewControllerDigitarISBN *)[segue destinationViewController];
+        digitarViewController.managedObjectContext = self.managedObjectContext;
           [segue destinationViewController];
     }
     else if ([[segue identifier] isEqualToString:@"segueFormulario"]) {
-        AKSViewControllerFormulario *detailViewController = (AKSViewControllerFormulario *)[segue destinationViewController];
-        detailViewController.managedObjectContext = self.managedObjectContext;
+        AKSViewControllerFormulario *formularioViewController = (AKSViewControllerFormulario *)[segue destinationViewController];
+        formularioViewController.managedObjectContext = self.managedObjectContext;
     }
 }
 
