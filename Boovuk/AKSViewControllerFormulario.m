@@ -16,7 +16,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *textFieldAutor;
 @property (strong, nonatomic) IBOutlet UITextField *textFieldNumeroPaginas;
 @property (strong, nonatomic) IBOutlet UITextField *textFieldISBN;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewCapa;
 - (IBAction)buttonSalvar:(id)sender;
+- (IBAction)buttonTirarFoto:(id)sender;
+- (IBAction)buttonPegarGaleria:(id)sender;
 
 @end
 
@@ -61,6 +64,7 @@
     livro.autores = self.textFieldAutor.text;
     livro.dataCadastro = [NSDate date];
     livro.isbn13 = self.textFieldISBN.text;
+    livro.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
     
     NSString *mensagem = @"";
     
@@ -82,8 +86,7 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
-    
-    
+        
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     
     // Configure for text only and offset down
@@ -96,6 +99,61 @@
     [hud hide:YES afterDelay:3];
 }
 
+- (IBAction)buttonTirarFoto:(id)sender {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Câmera"
+                                                           message:@"Este dispositivo não possui câmera"
+                                                          delegate:nil
+                                                 cancelButtonTitle:nil
+                                                 otherButtonTitles:@"OK", nil];
+        [alertView show];
+        return;
+        
+    }
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
+    
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (IBAction)buttonPegarGaleria:(id)sender {
+    //instância de UIImagePickerController qeu apresenta navegação na biblioteca
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    
+    //definimos o tipo da UIImagePickerController, no caso será PhotoLibrary (biblioteca de imagens)
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    
+    //apresentamos a UIImagePickerController na tela
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    //pegar imagem selecionada
+    UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
+    
+    self.imageViewCapa.image = image;
+    
+    //fechar a ViewController da biblioteca
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    //fechar a ViewController da biblioteca
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - EsconderTeclado
 //Método responsável por esconder o teclado ao tocar em algum local da tela
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self becomeFirstResponder];

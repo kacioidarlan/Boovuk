@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AKSViewControllerDigitalizarISBN : UIViewController
-
+@property  (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @end
