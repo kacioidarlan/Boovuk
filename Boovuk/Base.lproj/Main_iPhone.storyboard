@@ -329,7 +329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXd-cG-6OD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="381" y="-924"/>
+            <point key="canvasLocation" x="746" y="-924"/>
         </scene>
         <!--View Controller DigitarISBN - Digitar ISBN-->
         <scene sceneID="sxu-ob-Mrb">
@@ -370,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sdu-dC-tix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="894" y="-924"/>
+            <point key="canvasLocation" x="164" y="-924"/>
         </scene>
         <!--View Controller DigitalizarISBN - Digitalizar ISBN-->
         <scene sceneID="nTZ-uQ-cco">
@@ -383,13 +383,31 @@
                     <view key="view" contentMode="scaleToFill" id="LYp-PG-4EQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J84-I0-QYL">
+                                <rect key="frame" x="20" y="174" width="280" height="179"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Localize o código de barra." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2U-Jk-F6d">
+                                <rect key="frame" x="20" y="145" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Digitalizar ISBN" id="anL-kR-hBq"/>
+                    <connections>
+                        <outlet property="labelISBN" destination="k2U-Jk-F6d" id="TUk-hW-O8Z"/>
+                        <outlet property="previewOutput" destination="J84-I0-QYL" id="U7h-y1-t5S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPE-Y9-5MU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="-924"/>
+            <point key="canvasLocation" x="1267" y="-924"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -398,6 +416,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="qPK-Ky-zXl"/>
+        <segue reference="Jhl-rA-INr"/>
     </inferredMetricsTieBreakers>
 </document>
