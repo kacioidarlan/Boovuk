@@ -28,6 +28,7 @@
     AVCaptureDeviceInput *_videoInput;
     AVCaptureMetadataOutput *_metadataOutput;
     AVCaptureVideoPreviewLayer *_previewLayer;
+    BOOL _isRunning;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,7 +45,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self startCaptureSession];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    if ( _isRunning == false) {
+        [_captureSession startRunning];
+    }
     
 }
 
@@ -114,6 +120,7 @@
     _metadataOutput.metadataObjectTypes = _metadataOutput.availableMetadataObjectTypes;
     _previewLayer.frame = _previewOutput.bounds;
     [_previewOutput.layer addSublayer:_previewLayer];
+    _isRunning = true;
 }
 
 #pragma mark - Processamento do código capturado
@@ -150,6 +157,8 @@
         
         if (detectionString != nil)
         {
+            [_captureSession stopRunning];
+            _isRunning = false;
             [self processaPesquisa:detectionString];
             break;
         }
