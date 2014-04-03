@@ -55,7 +55,9 @@
         self.labelNrPag.text = [livro.numeroPaginas stringValue];
         self.labelISBN.text = livro.isbn13;
         self.textViewDescricao.text = livro.descricao;
-        self.imageViewCapa.image = [UIImage imageWithData:livro.foto];        
+        
+        NSData  *data  = [NSData dataWithContentsOfURL:[NSURL URLWithString:livro.thumbnail]];
+        self.imageViewCapa.image = [UIImage imageWithData:data];
     }
 }
 

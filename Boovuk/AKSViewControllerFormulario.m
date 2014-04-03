@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *textFieldEditora;
 
 @property BOOL livroSalvo;
+@property (strong, nonatomic) NSString *pathCapa;
 
 @end
 
@@ -214,6 +215,46 @@
         [fileManager removeItemAtURL:[NSURL URLWithString:self.livroIncluir.thumbnail] error:nil];
         [fileManager removeItemAtURL:[NSURL URLWithString:self.livroIncluir.smallThumbnail] error:nil];
     }
+}
+
+#pragma mark - Salvar Imagem
+- (NSString *)saveImage:(NSData *)image {
+    
+    NSError *error;
+    // a extensão do arquivo
+    NSString *type       = [self contentTypeForImageData:image];
+    // pega o diretório da aplicação
+    NSURL *documentsPath = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    // monta o nome do arquivo
+    NSURL *fileName      = [documentsPath URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", [[NSUUID UUID] UUIDString], type]];
+    
+    if ( [type isEqualToString:@"jpg"] ) {
+        [UIImageJPEGRepresentation([UIImage imageWithData:image], 1.0) writeToURL:fileName options:NSAtomicWrite error:&error];
+    } else if ( [type isEqualToString:@"png"] ) {
+        [UIImagePNGRepresentation([UIImage imageWithData:image]) writeToURL:fileName options:NSAtomicWrite error:&error];
+    } else {
+        return nil;
+    }
+    
+    return [fileName absoluteString];
+}
+
+- (NSString *)contentTypeForImageData:(NSData*)data {
+    uint8_t c;
+    [data getBytes:&c length:1];
+    
+    switch (c) {
+        case 0xFF:
+            return @"jpg";
+        case 0x89:
+            return @"png";
+        case 0x47:
+            return @"gif";
+        case 0x49:
+        case 0x4D:
+            return @"tif";
+    }
+    return nil;
 }
 
 #pragma mark - UIImagePickerControllerDelegate

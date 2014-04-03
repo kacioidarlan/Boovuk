@@ -382,7 +382,7 @@
 				ORGANIZATIONNAME = "Grupo iOS 4mob";
 				TargetAttributes = {
 					E652BB7718E3B69100ADEB74 = {
-						DevelopmentTeam = 62A2P7KVN8;
+						DevelopmentTeam = 6QZ49M6Q9F;
 					};
 					E652BBA318E3B69200ADEB74 = {
 						TestTargetID = E652BB7718E3B69100ADEB74;
