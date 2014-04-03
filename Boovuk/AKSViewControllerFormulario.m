@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *textFieldISBN13;
 @property (strong, nonatomic) IBOutlet UITextView *textViewDescricao;
+@property (strong, nonatomic) IBOutlet UITextField *textFieldEditora;
 
 @end
 
@@ -41,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self preencherLivroEdicao];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,13 +77,6 @@
     Livro *livro;
     
     if (self.livroEditar != nil) {
-        //        self.livroEditar.titulo = self.textFieldtitulo.text;
-        //        self.livroEditar.autores = self.textFieldAutor.text;
-        //        self.livroEditar.dataCadastro = [NSDate date];
-        //        self.livroEditar.isbn13 = self.textFieldISBN.text;
-        //        self.livroEditar.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
-        //        self.livroEditar.isbn13 = self.textFieldISBN13.text;
-        //        self.livroEditar.descricao = self.textViewDescricao.text;
         livro = self.livroEditar;
 
     } else
@@ -92,9 +86,10 @@
     
     livro.titulo = self.textFieldtitulo.text;
     livro.autores = self.textFieldAutor.text;
+    livro.editora = self.textFieldEditora.text;
     livro.dataCadastro = [NSDate date];
-    livro.isbn13 = self.textFieldISBN.text;
     livro.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
+    livro.isbn10 = self.textFieldISBN.text;
     livro.isbn13 = self.textFieldISBN13.text;
     livro.descricao = self.textViewDescricao.text;
     
@@ -107,7 +102,8 @@
         
         mensagem = @"Ocorreu um erro ao inserir o Livro.";
     }
-    else{
+    else
+    {
         mensagem = @"Livro incluído com sucesso";
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             AKSDetailViewController *detailViewController = [self.navigationController.viewControllers firstObject];
@@ -165,6 +161,10 @@
     
     //apresentamos a UIImagePickerController na tela
     [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    //excluir livro se não foi adicionado
 }
 
 #pragma mark - UIImagePickerControllerDelegate
