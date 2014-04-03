@@ -37,7 +37,13 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(buttonAdicionar:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (AKSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];    
+    self.detailViewController = (AKSDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        //carregar o primeiro livro da lista
+        //[self performSegueWithIdentifier:@"showDetail" sender:NULL];
+
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -150,7 +156,7 @@
 
 -(void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSLog(@"Pesquisar");
+    //NSLog(@"Pesquisar");
     if ([self.searchBar.text isEqualToString:@""]) {
         self.pesquisando = FALSE;
         [self.tableView reloadData];
