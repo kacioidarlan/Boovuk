@@ -64,17 +64,17 @@
         self.textFieldISBN13.text = self.livroEditar.isbn13;
         self.textViewDescricao.text = self.livroEditar.descricao;
         //self.imageViewCapa.image = [UIImage imageWithData:self.livroEditar.foto];
-        self.imageViewCapa.image = [UIImage imageNamed:self.livroEditar.thumbnail];
-        
     } else if (self.livroIncluir != NULL){
         self.textFieldtitulo.text = self.livroIncluir.titulo;
         self.textFieldAutor.text = self.livroIncluir.autores;
         self.textFieldNumeroPaginas.text = [self.livroIncluir.numeroPaginas stringValue];
         self.textFieldISBN.text = self.livroIncluir.isbn10;
         self.textFieldISBN13.text = self.livroIncluir.isbn13;
+        self.textFieldEditora.text = self.livroIncluir.editora;
         self.textViewDescricao.text = self.livroIncluir.descricao;
-        //self.imageViewCapa.image = [UIImage imageWithData:self.livroIncluir.foto];
-        self.imageViewCapa.image = [UIImage imageNamed:self.livroIncluir.thumbnail];
+        
+        NSData  *data  = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.livroIncluir.thumbnail]];
+        self.imageViewCapa.image = [UIImage imageWithData:data];
     }
     
 }
@@ -205,6 +205,9 @@
     //excluir livro se não foi adicionado
     if (!self.livroSalvo && self.livroIncluir != NULL) {
         [self.managedObjectContext deleteObject:self.livroIncluir];
+        NSFileManager *fileManager = [ NSFileManager defaultManager];
+        [fileManager removeItemAtURL:[NSURL URLWithString:self.livroIncluir.thumbnail] error:nil];
+        [fileManager removeItemAtURL:[NSURL URLWithString:self.livroIncluir.smallThumbnail] error:nil];
     }
 }
 
