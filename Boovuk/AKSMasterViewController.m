@@ -183,11 +183,24 @@
 
 #pragma mark - Fetched results controller
 
-- (NSFetchedResultsController *)fetchedResultsController
+- (NSFetchedResultsController *)results
 {
-    if (self.pesquisando) {
+    if (self.pesquisando)
+    {
         return self.fetchedResultsControllerFiltrado;
     }
+    else
+    {
+        return self.fetchedResultsController;
+    }
+    
+    return nil;
+}
+
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+  
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
@@ -210,23 +223,26 @@
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
     aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error]) {
+	if (![aFetchedResultsController performFetch:&error]) {
 	     // Replace this implementation with code to handle the error appropriately.
 	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	    abort();
 	}
     
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    
     return _fetchedResultsController;
 }
 
 - (NSFetchedResultsController *)fetchedResultsControllerFiltrado
 {
+    
     if (_fetchedResultsControllerFiltrado != nil) {
-        return _fetchedResultsControllerFiltrado;
+         _fetchedResultsControllerFiltrado = nil;
     }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -253,15 +269,17 @@
     // nil for section name key path means "no sections".
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Filtrado"];
     aFetchedResultsController.delegate = self;
-    self.fetchedResultsControllerFiltrado = aFetchedResultsController;
     
 	NSError *error = nil;
-	if (![self.fetchedResultsControllerFiltrado performFetch:&error]) {
+	if (![aFetchedResultsController performFetch:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	    abort();
 	}
+    
+    _fetchedResultsControllerFiltrado = aFetchedResultsController;
+    
     
     return _fetchedResultsControllerFiltrado;
 }
@@ -332,7 +350,8 @@
     Livro *livro = (Livro *)object;
     cell.textLabel.text = livro.titulo;
     cell.detailTextLabel.text = livro.autores;
-    cell.imageView.image = [UIImage imageWithData:livro.foto];
+    NSData  *data  = [NSData dataWithContentsOfURL:[NSURL URLWithString:livro.thumbnail]];
+    cell.imageView.image = [UIImage imageWithData:data];
 }
 
 - (IBAction)buttonAdicionar:(id)sender {
