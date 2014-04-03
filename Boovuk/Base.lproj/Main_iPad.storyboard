@@ -117,7 +117,13 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Livro" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" title="Editar" id="Evx-B2-Mmj">
+                            <connections>
+                                <action selector="buttonEditar:" destination="JEX-9P-axG" id="bz1-6d-bzB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imageViewCapa" destination="aJ6-0b-ok6" id="hzK-JE-bf8"/>
                         <outlet property="labelAutores" destination="yNM-TY-vVa" id="x2X-hc-jBQ"/>
@@ -244,12 +250,18 @@
                                 <state key="normal" title="Pesquisar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buttonPesquisar:" destination="qxL-iv-zt3" eventType="touchUpInside" id="TYq-XD-gam"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Digitar ISBN" id="ktW-ZO-3Jn"/>
+                    <connections>
+                        <outlet property="textViewISBN" destination="YfK-mi-fFR" id="eYE-8b-IvA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyO-00-f7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -268,29 +280,72 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Título" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPP-5t-sT5">
-                                <rect key="frame" x="20" y="123" width="663" height="30"/>
+                                <rect key="frame" x="20" y="275" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Autor" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Snz-yi-FgX">
-                                <rect key="frame" x="20" y="181" width="663" height="30"/>
+                                <rect key="frame" x="20" y="316" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Editora" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wvp-EM-5qd">
+                                <rect key="frame" x="20" y="356" width="663" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Número de páginas" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HeA-rL-fAx">
-                                <rect key="frame" x="20" y="242" width="663" height="30"/>
+                                <rect key="frame" x="20" y="395" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dag-dy-hAn">
-                                <rect key="frame" x="20" y="304" width="663" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN 10" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dag-dy-hAn">
+                                <rect key="frame" x="20" y="434" width="663" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN 13" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dIA-4R-6tU">
+                                <rect key="frame" x="20" y="473" width="663" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s2A-NN-hli">
+                                <rect key="frame" x="20" y="77" width="162" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Descrição do Livro" translatesAutoresizingMaskIntoConstraints="NO" id="WzG-4h-XCu">
+                                <rect key="frame" x="20" y="511" width="663" height="183"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TR0-qc-HVd">
+                                <rect key="frame" x="234" y="106" width="67" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tirar Foto">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonTirarFoto:" destination="GAT-Jf-EuV" eventType="touchUpInside" id="lJe-Ww-brj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9A-RT-7VW">
+                                <rect key="frame" x="234" y="144" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Escolher da Galeria">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPegarGaleria:" destination="GAT-Jf-EuV" eventType="touchUpInside" id="bc2-yX-eYc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -307,10 +362,14 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="imageViewCapa" destination="s2A-NN-hli" id="Z2Z-T8-yBq"/>
                         <outlet property="textFieldAutor" destination="Snz-yi-FgX" id="Lty-E6-3dR"/>
+                        <outlet property="textFieldEditora" destination="wvp-EM-5qd" id="ENg-k6-5Ar"/>
                         <outlet property="textFieldISBN" destination="dag-dy-hAn" id="jaf-ig-k0W"/>
+                        <outlet property="textFieldISBN13" destination="dIA-4R-6tU" id="uNR-jJ-FmE"/>
                         <outlet property="textFieldNumeroPaginas" destination="HeA-rL-fAx" id="MBV-OQ-ooV"/>
                         <outlet property="textFieldtitulo" destination="aPP-5t-sT5" id="jC3-Io-UY9"/>
+                        <outlet property="textViewDescricao" destination="WzG-4h-XCu" id="30i-Nu-p7C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3I-NT-uJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
