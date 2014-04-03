@@ -53,12 +53,20 @@ static NSString * const kURIServices = @"https://www.googleapis.com/books/v1/vol
     NSString *uri = [[NSString stringWithFormat:@"%@?q=isbn:%@", kURIServices, ISBN] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [manager GET:uri parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSNumber *totalItems = [(NSDictionary *)responseObject objectForKey:@"totalItems"];
+        
+        if ( [totalItems intValue] == 0) {
+            fail(@"ISBN não encontrado.");
+            return;
+        }
+        
         if ( sucess ) {
             sucess( [self parseResponse:responseObject context:context] );
+            return;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ( fail ) {
-            fail(@"Falha!");
+            fail(@"Falha ao conectar no servidor para pesquisar o ISBN, favor verificar se você tem acesso a internet.");
         }
     }];
 }
