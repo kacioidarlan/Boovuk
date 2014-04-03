@@ -403,11 +403,12 @@
                     <connections>
                         <outlet property="labelISBN" destination="k2U-Jk-F6d" id="TUk-hW-O8Z"/>
                         <outlet property="previewOutput" destination="J84-I0-QYL" id="U7h-y1-t5S"/>
+                        <segue destination="btk-wr-S5U" kind="push" identifier="segueFormulario" id="Abq-hS-Y4Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPE-Y9-5MU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1267" y="-924"/>
+            <point key="canvasLocation" x="1261" y="-924"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -416,6 +417,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jhl-rA-INr"/>
+        <segue reference="Abq-hS-Y4Z"/>
     </inferredMetricsTieBreakers>
 </document>
