@@ -73,14 +73,14 @@
 }
 
 - (IBAction)buttonEditar:(id)sender {
-    [self performSegueWithIdentifier:@"segueFormulario" sender:self.detailItem];
+    [self performSegueWithIdentifier:@"segueFormulario" sender:NULL];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"segueFormulario"]) {
         AKSViewControllerFormulario *formularioViewController = (AKSViewControllerFormulario *)[segue destinationViewController];
         formularioViewController.managedObjectContext = self.managedObjectContext;
-        formularioViewController.livroEditar = sender;
+        formularioViewController.livroEditar = self.detailItem;
     }
 }
 

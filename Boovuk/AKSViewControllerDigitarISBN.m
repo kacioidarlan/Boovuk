@@ -11,6 +11,7 @@
 #import "MBProgressHUD.h"
 #import "BookSearch.h"
 #import "Livro.h"
+#import "AKSUtil.h"
 
 @interface AKSViewControllerDigitarISBN ()
 
@@ -53,28 +54,22 @@
 */
 
 - (IBAction)buttonPesquisar:(id)sender {
-    
+    [self becomeFirstResponder];
     //    TODO : Remover depois
     //    Exemplo de todo utilizar o booksearch
     if (![self.textViewISBN.text isEqualToString:@""]) {
         [BookSearch searchByISBN:self.textViewISBN.text context:self.managedObjectContext sucess:^(Livro *livro) {
             NSLog(@"Ok :");
-            [self performSegueWithIdentifier:@"segueFormulario" sender:livro];
+            if (livro.titulo != NULL) {
+                [self performSegueWithIdentifier:@"segueFormulario" sender:livro];
+            }
         } fail:^(NSString *error) {
             NSLog(@"Error : %@", error);
+            [AKSUtil exibirMensagemToast:error navigationController:self.navigationController];
         }];
     } else {
         NSString *mensagem = @"Código ISBN não localizado";
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        // Configure for text only and offset down
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = mensagem;
-        hud.margin = 10.f;
-        hud.yOffset = 150.f;
-        hud.removeFromSuperViewOnHide = YES;
-        
-        [hud hide:YES afterDelay:3];
+        [AKSUtil exibirMensagemToast:mensagem navigationController:self.navigationController];
         
     }
 }
@@ -83,7 +78,17 @@
     if ([[segue identifier] isEqualToString:@"segueFormulario"]) {
         AKSViewControllerFormulario *formularioViewController = (AKSViewControllerFormulario *)[segue destinationViewController];
         formularioViewController.managedObjectContext = self.managedObjectContext;
-        formularioViewController.livroEditar = sender;
+        formularioViewController.livroIncluir = sender;
     }
+}
+
+#pragma mark - EsconderTeclado
+//Método responsável por esconder o teclado ao tocar em algum local da tela
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self becomeFirstResponder];
+}
+
+-(BOOL)canBecomeFirstResponder{
+    return YES;
 }
 @end

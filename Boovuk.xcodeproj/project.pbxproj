@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E60E6E1318ECE77400A3BF2B /* AKSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E60E6E1218ECE77400A3BF2B /* AKSUtil.m */; };
 		E62D693018E4E72B00575FC5 /* AKSViewControllerDigitalizarISBN.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D692F18E4E72B00575FC5 /* AKSViewControllerDigitalizarISBN.m */; };
 		E62D693318E4E73E00575FC5 /* AKSViewControllerDigitarISBN.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D693218E4E73E00575FC5 /* AKSViewControllerDigitarISBN.m */; };
 		E62D693618E4E75C00575FC5 /* AKSViewControllerFormulario.m in Sources */ = {isa = PBXBuildFile; fileRef = E62D693518E4E75C00575FC5 /* AKSViewControllerFormulario.m */; };
@@ -62,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E60E6E1118ECE77400A3BF2B /* AKSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSUtil.h; sourceTree = "<group>"; };
+		E60E6E1218ECE77400A3BF2B /* AKSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSUtil.m; sourceTree = "<group>"; };
 		E62D692E18E4E72B00575FC5 /* AKSViewControllerDigitalizarISBN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSViewControllerDigitalizarISBN.h; sourceTree = "<group>"; };
 		E62D692F18E4E72B00575FC5 /* AKSViewControllerDigitalizarISBN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSViewControllerDigitalizarISBN.m; sourceTree = "<group>"; };
 		E62D693118E4E73E00575FC5 /* AKSViewControllerDigitarISBN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSViewControllerDigitarISBN.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 			children = (
 				E6508F3C18E8C6AB0009ED53 /* MBProgressHUD.h */,
 				E6508F3D18E8C6AB0009ED53 /* MBProgressHUD.m */,
+				E60E6E1118ECE77400A3BF2B /* AKSUtil.h */,
+				E60E6E1218ECE77400A3BF2B /* AKSUtil.m */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				FC0BE9EB18EB830800ADAAAF /* AFURLSessionManager.m in Sources */,
 				FC0BE9E518EB830800ADAAAF /* AFHTTPSessionManager.m in Sources */,
 				E62D693318E4E73E00575FC5 /* AKSViewControllerDigitarISBN.m in Sources */,
+				E60E6E1318ECE77400A3BF2B /* AKSUtil.m in Sources */,
 				FC0BE9E618EB830800ADAAAF /* AFNetworkReachabilityManager.m in Sources */,
 				FC0BE9F918EB8B8500ADAAAF /* Livro.m in Sources */,
 				E652BB9A18E3B69100ADEB74 /* AKSMasterViewController.m in Sources */,

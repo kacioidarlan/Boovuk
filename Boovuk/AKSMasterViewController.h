@@ -18,6 +18,7 @@
 @property (strong, nonatomic) AKSDetailViewController *detailViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsControllerFiltrado;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

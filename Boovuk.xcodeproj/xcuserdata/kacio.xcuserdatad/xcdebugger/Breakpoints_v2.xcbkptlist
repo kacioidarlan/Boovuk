@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Boovuk/AKSMasterViewController.m"
-            timestampString = "418152193.678726"
+            timestampString = "418193732.466188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "-searchBarSearchButtonClicked:"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-fetchedResultsControllerFiltrado"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

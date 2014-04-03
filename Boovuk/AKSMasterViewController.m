@@ -120,8 +120,8 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.detailViewController.detailItem = object;
         self.detailViewController.managedObjectContext = self.managedObjectContext;
+        self.detailViewController.detailItem = object;
     }
 }
 
@@ -160,13 +160,14 @@
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Pesquisar Clique");
     self.pesquisando = TRUE;
-    _fetchedResultsController = nil;
+//    _fetchedResultsController = nil;
     [self.tableView reloadData];
 }
 
 -(void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Pesquisar Cancelar");
     self.pesquisando = FALSE;
+//    _fetchedResultsController = nil;
     [self.tableView reloadData];
 }
 
@@ -174,6 +175,9 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
+    if (self.pesquisando) {
+        return self.fetchedResultsControllerFiltrado;
+    }
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
@@ -207,7 +211,50 @@
 	}
     
     return _fetchedResultsController;
-}    
+}
+
+- (NSFetchedResultsController *)fetchedResultsControllerFiltrado
+{
+    if (_fetchedResultsControllerFiltrado != nil) {
+        return _fetchedResultsControllerFiltrado;
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Livro" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"titulo" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    NSPredicate *predicate = [NSPredicate
+                              predicateWithFormat:@"titulo CONTAINS[cd] %@",
+                              self.searchBar.text];
+    [fetchRequest setPredicate:predicate];
+
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Filtrado"];
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsControllerFiltrado = aFetchedResultsController;
+    
+	NSError *error = nil;
+	if (![self.fetchedResultsControllerFiltrado performFetch:&error]) {
+        // Replace this implementation with code to handle the error appropriately.
+        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	    abort();
+	}
+    
+    return _fetchedResultsControllerFiltrado;
+}
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
@@ -272,8 +319,10 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"titulo"] description];
-    cell.detailTextLabel.text = [[object valueForKey:@"autores"] description];
+    Livro *livro = (Livro *)object;
+    cell.textLabel.text = livro.titulo;
+    cell.detailTextLabel.text = livro.autores;
+    cell.imageView.image = [UIImage imageWithData:livro.foto];
 }
 
 - (IBAction)buttonAdicionar:(id)sender {

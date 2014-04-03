@@ -9,6 +9,7 @@
 #import "AKSViewControllerFormulario.h"
 #import "AKSDetailViewController.h"
 #import "Livro.h"
+#import "AKSUtil.h"
 #import "MBProgressHUD.h"
 
 @interface AKSViewControllerFormulario ()
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *textFieldISBN13;
 @property (strong, nonatomic) IBOutlet UITextView *textViewDescricao;
 @property (strong, nonatomic) IBOutlet UITextField *textFieldEditora;
+
+@property BOOL livroSalvo;
 
 @end
 
@@ -43,6 +46,7 @@
 {
     [super viewDidLoad];
     [self preencherLivroEdicao];
+    self.livroSalvo = FALSE;
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,15 +56,27 @@
 }
 
 -(void) preencherLivroEdicao {
-    if (self.livroEditar != nil) {
+    if (self.livroEditar != NULL) {
         self.textFieldtitulo.text = self.livroEditar.titulo;
         self.textFieldAutor.text = self.livroEditar.autores;
         self.textFieldNumeroPaginas.text = [self.livroEditar.numeroPaginas stringValue];
         self.textFieldISBN.text = self.livroEditar.isbn10;
         self.textFieldISBN13.text = self.livroEditar.isbn13;
         self.textViewDescricao.text = self.livroEditar.descricao;
-        self.imageViewCapa.image = [UIImage imageWithData:self.livroEditar.foto];
+        //self.imageViewCapa.image = [UIImage imageWithData:self.livroEditar.foto];
+        self.imageViewCapa.image = [UIImage imageNamed:self.livroEditar.thumbnail];
+        
+    } else if (self.livroIncluir != NULL){
+        self.textFieldtitulo.text = self.livroIncluir.titulo;
+        self.textFieldAutor.text = self.livroIncluir.autores;
+        self.textFieldNumeroPaginas.text = [self.livroIncluir.numeroPaginas stringValue];
+        self.textFieldISBN.text = self.livroIncluir.isbn10;
+        self.textFieldISBN13.text = self.livroIncluir.isbn13;
+        self.textViewDescricao.text = self.livroIncluir.descricao;
+        //self.imageViewCapa.image = [UIImage imageWithData:self.livroIncluir.foto];
+        self.imageViewCapa.image = [UIImage imageNamed:self.livroIncluir.thumbnail];
     }
+    
 }
 /*
 #pragma mark - Navigation
@@ -75,29 +91,52 @@
 
 - (IBAction)buttonSalvar:(id)sender {
     Livro *livro;
-    
-    if (self.livroEditar != nil) {
-        livro = self.livroEditar;
-
-    } else
+    NSManagedObjectContext *context;
+    if (self.livroEditar != NULL)
     {
+        context = self.livroEditar.managedObjectContext;
+        self.livroEditar.titulo = self.textFieldtitulo.text;
+        self.livroEditar.autores = self.textFieldAutor.text;
+        self.livroEditar.editora = self.textFieldEditora.text;
+        self.livroEditar.dataCadastro = [NSDate date];
+        self.livroEditar.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
+        self.livroEditar.isbn10 = self.textFieldISBN.text;
+        self.livroEditar.isbn13 = self.textFieldISBN13.text;
+        self.livroEditar.descricao = self.textViewDescricao.text;
+        
+    }
+    else if (self.livroIncluir != NULL)
+    {
+        context = self.managedObjectContext;
+        self.livroIncluir.titulo = self.textFieldtitulo.text;
+        self.livroIncluir.autores = self.textFieldAutor.text;
+        self.livroIncluir.editora = self.textFieldEditora.text;
+        self.livroIncluir.dataCadastro = [NSDate date];
+        self.livroIncluir.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
+        self.livroIncluir.isbn10 = self.textFieldISBN.text;
+        self.livroIncluir.isbn13 = self.textFieldISBN13.text;
+        self.livroIncluir.descricao = self.textViewDescricao.text;
+    }
+    else
+    {
+        context = self.managedObjectContext;
         livro = (Livro *)[NSEntityDescription insertNewObjectForEntityForName:@"Livro" inManagedObjectContext:self.managedObjectContext];
+        livro.titulo = self.textFieldtitulo.text;
+        livro.autores = self.textFieldAutor.text;
+        livro.editora = self.textFieldEditora.text;
+        livro.dataCadastro = [NSDate date];
+        livro.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
+        livro.isbn10 = self.textFieldISBN.text;
+        livro.isbn13 = self.textFieldISBN13.text;
+        livro.descricao = self.textViewDescricao.text;
     }
     
-    livro.titulo = self.textFieldtitulo.text;
-    livro.autores = self.textFieldAutor.text;
-    livro.editora = self.textFieldEditora.text;
-    livro.dataCadastro = [NSDate date];
-    livro.foto = [NSData dataWithData:UIImagePNGRepresentation(self.imageViewCapa.image)];
-    livro.isbn10 = self.textFieldISBN.text;
-    livro.isbn13 = self.textFieldISBN13.text;
-    livro.descricao = self.textViewDescricao.text;
     
     NSString *mensagem = @"";
     
     //salva o contexto no banco e loga erro caso ocorra
     NSError *error = NULL;
-    if (![self.managedObjectContext save:&error]) {
+    if (![context save:&error]) {
         NSLog(@"ERROR: %@, %@", error, [error userInfo]);
         
         mensagem = @"Ocorreu um erro ao inserir o Livro.";
@@ -107,7 +146,13 @@
         mensagem = @"Livro incluído com sucesso";
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             AKSDetailViewController *detailViewController = [self.navigationController.viewControllers firstObject];
-            detailViewController.detailItem = livro;
+            if (self.livroEditar != nil) {
+                detailViewController.detailItem = self.livroEditar;
+            }
+            else {
+                detailViewController.detailItem = livro;
+            }
+            
             [self.navigationController popToViewController:(UIViewController *)detailViewController animated:YES];
         }
         else {
@@ -115,16 +160,9 @@
         }
     }
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [AKSUtil exibirMensagemToast:mensagem navigationController:self.navigationController];
     
-    // Configure for text only and offset down
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = mensagem;
-    hud.margin = 10.f;
-    hud.yOffset = 150.f;
-    hud.removeFromSuperViewOnHide = YES;
-    
-    [hud hide:YES afterDelay:3];
+    self.livroSalvo = TRUE;
 }
 
 - (IBAction)buttonTirarFoto:(id)sender {
@@ -165,6 +203,9 @@
 
 -(void) viewWillDisappear:(BOOL)animated{
     //excluir livro se não foi adicionado
+    if (!self.livroSalvo && self.livroIncluir != NULL) {
+        [self.managedObjectContext deleteObject:self.livroIncluir];
+    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate

@@ -12,4 +12,5 @@
 @interface AKSViewControllerFormulario : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property  (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property  (nonatomic, strong) Livro *livroEditar;
+@property  (nonatomic, strong) Livro *livroIncluir;
 @end
