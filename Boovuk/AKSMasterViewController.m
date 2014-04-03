@@ -151,6 +151,10 @@
 -(void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSLog(@"Pesquisar");
+    if ([self.searchBar.text isEqualToString:@""]) {
+        self.pesquisando = FALSE;
+        [self.tableView reloadData];
+    }
 }
 
 -(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar{
