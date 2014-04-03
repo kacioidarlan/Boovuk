@@ -62,7 +62,12 @@
         self.textFieldNumeroPaginas.text = [self.livroEditar.numeroPaginas stringValue];
         self.textFieldISBN.text = self.livroEditar.isbn10;
         self.textFieldISBN13.text = self.livroEditar.isbn13;
+        self.textFieldEditora.text = self.livroEditar.editora;
         self.textViewDescricao.text = self.livroEditar.descricao;
+        if ( self.livroEditar.thumbnail) {
+            NSData  *data  = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.livroEditar.thumbnail]];
+            self.imageViewCapa.image = [UIImage imageWithData:data];
+        }
         //self.imageViewCapa.image = [UIImage imageWithData:self.livroEditar.foto];
     } else if (self.livroIncluir != NULL){
         self.textFieldtitulo.text = self.livroIncluir.titulo;
