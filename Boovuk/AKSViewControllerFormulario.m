@@ -279,17 +279,8 @@
     self.imageViewCapa.image = image;
     NSData *imgData;
 
-    // a extensão do arquivo
-   // NSString *type = [self contentTypeForImageData:image];
+    imgData = UIImagePNGRepresentation(image);
 
-    @try {
-        imgData = UIImagePNGRepresentation(image);
-    }
-    @catch (NSException *exception) {
-        imgData = UIImageJPEGRepresentation(image, 0.6);
-    }
-    
-    
     self.pathCapa = [self saveImage:imgData];
     
     //fechar a ViewController da biblioteca
