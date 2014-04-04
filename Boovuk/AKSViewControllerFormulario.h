@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Livro.h"
 
-@interface AKSViewControllerFormulario : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface AKSViewControllerFormulario : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 @property  (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property  (nonatomic, strong) Livro *livroEditar;
 @property  (nonatomic, strong) Livro *livroIncluir;

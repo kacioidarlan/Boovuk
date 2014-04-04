@@ -48,6 +48,14 @@
     [super viewDidLoad];
     [self preencherLivroEdicao];
     self.livroSalvo = FALSE;
+    
+    self.textFieldtitulo.delegate = self;
+    self.textFieldAutor.delegate = self;
+    self.textFieldEditora.delegate = self;
+    self.textFieldNumeroPaginas.delegate = self;
+    self.textFieldISBN.delegate = self;
+    self.textFieldISBN13.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +78,7 @@
             self.imageViewCapa.image = [UIImage imageWithData:data];
         }
         //self.imageViewCapa.image = [UIImage imageWithData:self.livroEditar.foto];
+        self.pathCapa = self.livroEditar.thumbnail;
     } else if (self.livroIncluir != NULL){
         self.textFieldtitulo.text = self.livroIncluir.titulo;
         self.textFieldAutor.text = self.livroIncluir.autores;
@@ -81,6 +90,8 @@
         
         NSData  *data  = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.livroIncluir.thumbnail]];
         self.imageViewCapa.image = [UIImage imageWithData:data];
+        
+        self.pathCapa = self.livroIncluir.thumbnail;
     }
     
 }
@@ -109,7 +120,7 @@
         self.livroEditar.isbn10 = self.textFieldISBN.text;
         self.livroEditar.isbn13 = self.textFieldISBN13.text;
         self.livroEditar.descricao = self.textViewDescricao.text;
-        
+        self.livroEditar.thumbnail = self.pathCapa;
     }
     else if (self.livroIncluir != NULL)
     {
@@ -122,6 +133,7 @@
         self.livroIncluir.isbn10 = self.textFieldISBN.text;
         self.livroIncluir.isbn13 = self.textFieldISBN13.text;
         self.livroIncluir.descricao = self.textViewDescricao.text;
+        self.livroIncluir.thumbnail = self.pathCapa;
     }
     else
     {
@@ -135,6 +147,7 @@
         livro.isbn10 = self.textFieldISBN.text;
         livro.isbn13 = self.textFieldISBN13.text;
         livro.descricao = self.textViewDescricao.text;
+        livro.thumbnail = self.pathCapa;
     }
     
     
@@ -262,8 +275,22 @@
 {
     //pegar imagem selecionada
     UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
-    
+
     self.imageViewCapa.image = image;
+    NSData *imgData;
+
+    // a extensão do arquivo
+   // NSString *type = [self contentTypeForImageData:image];
+
+    @try {
+        imgData = UIImagePNGRepresentation(image);
+    }
+    @catch (NSException *exception) {
+        imgData = UIImageJPEGRepresentation(image, 0.6);
+    }
+    
+    
+    self.pathCapa = [self saveImage:imgData];
     
     //fechar a ViewController da biblioteca
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -282,6 +309,21 @@
 }
 
 -(BOOL)canBecomeFirstResponder{
+    return YES;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if(textField == self.textFieldtitulo){
+        [self.textFieldAutor becomeFirstResponder];
+    }else if (textField == self.textFieldAutor){
+        [self.textFieldEditora becomeFirstResponder];
+    }else if (textField == self.textFieldEditora){
+        [self.textFieldNumeroPaginas becomeFirstResponder];
+    }else if (textField == self.textFieldNumeroPaginas){
+        [self.textFieldISBN becomeFirstResponder];
+    }else{
+        [self.textFieldISBN13 resignFirstResponder];
+    }
     return YES;
 }
 @end
